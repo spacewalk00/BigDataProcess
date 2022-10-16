@@ -27,40 +27,35 @@ for i in total:
 	rank.append(total_sorted.index(i)+1)
 #print(rank)
 
+allC = 0
+if len(set(rank)) == 1:
+	#모두 동점인 경우
+	allC = 1
+
 grade_list = []
 abc = [ [], [], [] ]
 
-overlap = 0
-check = set(rank)
 
-if len(check) != student_num:
-	overlap = 1	
-
-if overlap == 0:
-	for r in rank:
-		if student_num * 0.3 >= r:
-			grade = "A"
-			abc[0].append(r)
-		elif student_num * 0.7 >= r:
-			grade = "B"
-			abc[1].append(r)
-		else:
-			grade = "C"
-			abc[2].append(r)
-
-		grade_list.append(grade)	
-else:
-	for r in rank:
+for r in rank:
+	a_condition = student_num * 0.3
+	b_condition = student_num * 0.7
+	
+	if a_condition >= r and len(abc[0]) < a_condition and allC == 0:
+		grade = "A"
+		abc[0].append(r)
+	elif student_num * 0.7 >= r and len(abc[1]) < b_condition and allC == 0:
+		grade = "B"
+		abc[1].append(r)
+	else:
 		grade = "C"
 		abc[2].append(r)
-		grade_list.append(grade)	
-		
+
+	grade_list.append(grade)	
 		
 #print(abc)
 #print(grade_list)
 
-
-if overlap == 0:		
+if allC == 0:
 	for a in range(len(abc)):
 		sorted_abc = sorted(abc[a])
 		for b in range(len(abc[a])):
@@ -70,8 +65,7 @@ if overlap == 0:
 				grade_list[rank.index(sorted_abc[b])] += '0'
 else:
 	for i in range(len(grade_list)):
-		grade_list[i] += '0'
-			
+		grade_list[i] += '0'			
 #print(grade_list)
 row_id = 1 
 for row in ws:
