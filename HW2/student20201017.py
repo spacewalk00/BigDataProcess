@@ -21,12 +21,12 @@ for row in ws:
 total_sorted = [] 
 total_sorted = sorted(total)
 total_sorted.reverse()
-print(total_sorted)
+#print(total_sorted)
 
 rank = []
 for t in total:
 	rank.append(total_sorted.index(t)+1)
-print(rank)
+#print(rank)
 
 allC = 0
 if len(set(rank)) == 1:
@@ -53,13 +53,13 @@ for r in rank:
 
 	grade_list.append(grade)	
 		
-print(abc)
-print(grade_list)
+#print(abc)
+#print(grade_list)
 
 if allC == 0:
 	for a in range(3):
 		sorted_abc = sorted(abc[a])
-		print('sorted',  sorted_abc )
+		#print('sorted',  sorted_abc )
 		for b in range(len(abc[a])):
 			if b < len(abc[a])/2:
 				grade_list[rank.index(sorted_abc[b])] += '+'
@@ -68,7 +68,7 @@ if allC == 0:
 else:
 	for i in range(len(grade_list)):
 		grade_list[i] += '0'			
-print(grade_list)
+#print(grade_list)
 row_id = 1 
 for row in ws:
 	if row_id != 1:	
