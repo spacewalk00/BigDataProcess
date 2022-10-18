@@ -24,8 +24,21 @@ total_sorted.reverse()
 #print(total_sorted)
 
 rank = []
+dic = {}
+
 for t in total:
 	rank.append(total_sorted.index(t)+1)
+
+	if total_sorted.index(t)+1 in dic:
+		dic[total_sorted.index(t)+1] += 1
+	else:
+		dic[total_sorted.index(t)+1] = 1
+#print(dic)
+i = 0
+for r in rank:
+	rank[i] += dic[rank[i]]	- 1	
+	i += 1
+	
 #print(rank)
 
 allC = 0
