@@ -89,14 +89,6 @@ for a in range(3):
 	sorted_tuple = sorted(dic2.items(), key=lambda x: x[1])
 	#print(sorted_tuple)
 	
-	''''overlap = 0
-	#중복이라면 
-	if len(set(abc[a])) != len(abc[a]):
-		#중복 건수가 반을 넘어가면
-		if len(set(abc[a])) + 1 / len(abc[a]) > 0.5:
-			overlap = 1
-	'''		
-	
 	for b in range(len(abc[a])):
 		#print(sorted_tuple[b][0] + start_index)
 		#print('맨앞', sorted_tuple[0][1])
