@@ -83,24 +83,26 @@ for a in range(3):
 		dic2[d] = abc[a][d]
 	#print(dic2)
 	#dic2 정렬
-	#sorted_dic2 = dict(sorted(dic2.items(), key=lambda x: x[1]))
+	sorted_dic2 = dict(sorted(dic2.items(), key=lambda x: x[1]))
 	#print(sorted_dic2)
 	#요소가 tuple인 list 만들기 , 정렬된 아이들 [ (엑셀 index, rank), .. ] sorted_tuple[0][0]
 	sorted_tuple = sorted(dic2.items(), key=lambda x: x[1])
 	#print(sorted_tuple)
 	
+	''''overlap = 0
 	#중복이라면 
-	overlap = 0
 	if len(set(abc[a])) != len(abc[a]):
 		#중복 건수가 반을 넘어가면
 		if len(set(abc[a])) + 1 / len(abc[a]) > 0.5:
 			overlap = 1
-			
+	'''		
+	
 	for b in range(len(abc[a])):
-		
-		if b < len(abc[a])/2 and overlap == 0: 	
+		#print(sorted_tuple[b][0] + start_index)
+		#print('맨앞', sorted_tuple[0][1])
+		#print('몇개있냐', rank.count(sorted_tuple[0][1]))
+		if len(abc[a])/2 > rank.count(sorted_tuple[0][1]):
 			grade_list[sorted_tuple[b][0] + start_index] += '+'
-			
 		else:
 			grade_list[sorted_tuple[b][0] + start_index] += '0'
 #print(grade_list)
