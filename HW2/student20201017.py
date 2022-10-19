@@ -34,17 +34,14 @@ for t in total:
 	else:
 		dic[total_sorted.index(t)+1] = 1
 #print(dic)
+print(rank)
+
 i = 0
 for r in rank:
 	rank[i] += dic[rank[i]]	- 1	
 	i += 1
 	
-#print(rank)
-
-allC = 0
-if len(set(rank)) == 1:
-	#모두 동점인 경우
-	allC = 1
+print(rank)
 
 grade_list = []
 abc = [ [], [], [] ]
@@ -54,10 +51,10 @@ for r in rank:
 	a_condition = student_num * 0.3
 	b_condition = student_num * 0.7
 	
-	if a_condition >= r and len(abc[0]) < a_condition and allC == 0:
+	if a_condition >= r and len(abc[0]) < a_condition:
 		grade = "A"
 		abc[0].append(r)
-	elif b_condition  >= r and len(abc[1]) + len(abc[0]) < b_condition and allC == 0:
+	elif b_condition  >= r and len(abc[1]) + len(abc[0]) < b_condition:
 		grade = "B"
 		abc[1].append(r)
 	else:
@@ -66,22 +63,48 @@ for r in rank:
 
 	grade_list.append(grade)	
 		
-#print(abc)
-#print(grade_list)
+print(abc)
+print(grade_list)
 
-if allC == 0:
-	for a in range(3):
-		sorted_abc = sorted(abc[a])
-		#print('sorted',  sorted_abc )
-		for b in range(len(abc[a])):
-			if b < len(abc[a])/2:
-				grade_list[rank.index(sorted_abc[b])] += '+'
-			else:
-				grade_list[rank.index(sorted_abc[b])] += '0'
-else:
-	for i in range(len(grade_list)):
-		grade_list[i] += '0'			
-#print(grade_list)
+
+start_index = 0
+for a in range(3):
+	if a == 1:
+		start_index = len(abc[0])
+	elif a == 2:
+		start_index = len(abc[1]) + len(abc[0])
+
+	#print('sorted',  sorted_abc )
+	index = 0
+	
+	#키값이 엑셀순 index, 값이 rank인 dic2을 만들기
+	dic2 = {}
+	for d in range(len(abc[a])):
+		dic2[d] = abc[a][d]
+	print(dic2)
+	#dic2 정렬
+	#sorted_dic2 = dict(sorted(dic2.items(), key=lambda x: x[1]))
+	#print(sorted_dic2)
+	#요소가 tuple인 list 만들기 , 정렬된 아이들 [ (엑셀 index, rank), .. ] sorted_tuple[0][0]
+	sorted_tuple = sorted(dic2.items(), key=lambda x: x[1])
+	print(sorted_tuple)
+	
+	#중복이라면 
+	overlap = 0
+	if len(set(abc[a])) != len(abc[a]):
+		#중복 건수가 반을 넘어가면
+		if len(set(abc[a])) + 1 / len(abc[a]) > 0.5:
+			overlap = 1
+			
+	for b in range(len(abc[a])):
+		
+		if b < len(abc[a])/2 and overlap == 0: 	
+			grade_list[sorted_tuple[b][0] + start_index] += '+'
+			
+		else:
+			grade_list[sorted_tuple[b][0] + start_index] += '0'
+print(grade_list)
+
 row_id = 1 
 for row in ws:
 	if row_id != 1:	
