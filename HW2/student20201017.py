@@ -34,14 +34,14 @@ for t in total:
 	else:
 		dic[total_sorted.index(t)+1] = 1
 #print(dic)
-print(rank)
+#print(rank)
 
 i = 0
 for r in rank:
 	rank[i] += dic[rank[i]]	- 1	
 	i += 1
 	
-print(rank)
+#print(rank)
 
 grade_list = []
 abc = [ [], [], [] ]
@@ -63,8 +63,8 @@ for r in rank:
 
 	grade_list.append(grade)	
 		
-print(abc)
-print(grade_list)
+#print(abc)
+#print(grade_list)
 
 
 start_index = 0
@@ -81,13 +81,13 @@ for a in range(3):
 	dic2 = {}
 	for d in range(len(abc[a])):
 		dic2[d] = abc[a][d]
-	print(dic2)
+	#print(dic2)
 	#dic2 정렬
 	#sorted_dic2 = dict(sorted(dic2.items(), key=lambda x: x[1]))
 	#print(sorted_dic2)
 	#요소가 tuple인 list 만들기 , 정렬된 아이들 [ (엑셀 index, rank), .. ] sorted_tuple[0][0]
 	sorted_tuple = sorted(dic2.items(), key=lambda x: x[1])
-	print(sorted_tuple)
+	#print(sorted_tuple)
 	
 	#중복이라면 
 	overlap = 0
@@ -103,7 +103,7 @@ for a in range(3):
 			
 		else:
 			grade_list[sorted_tuple[b][0] + start_index] += '0'
-print(grade_list)
+#print(grade_list)
 
 row_id = 1 
 for row in ws:
