@@ -92,8 +92,8 @@ for a in range(3):
 	for b in range(len(abc[a])):
 		#print(sorted_tuple[b][0] + start_index)
 		#print('맨앞', sorted_tuple[0][1])
-		#print('몇개있냐', rank.count(sorted_tuple[0][1]))
-		if len(abc[a])/2 > rank.count(sorted_tuple[0][1]):
+		#print('몇개있냐', rank.count(sorted_tuple[b][1]))
+		if len(abc[a])/2 > rank.count(sorted_tuple[b][1]):
 			grade_list[sorted_tuple[b][0] + start_index] += '+'
 		else:
 			grade_list[sorted_tuple[b][0] + start_index] += '0'
