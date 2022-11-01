@@ -3,12 +3,12 @@
 import sys
 import datetime
 
-file = open("uberoutput.txt", "wt")
+file = open(sys.argv[2], "wt")
 days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
 weekday = [{}, {}, {}, {}, {}, {}, {}]
 
-with open("uber.txt", "rt") as fp:
-#with open(sys.argv[1], "rt") as fp:
+#with open("uber.txt", "rt") as fp:
+with open(sys.argv[1], "rt") as fp:
 	lines = fp.readlines()
 	for line in lines:
 		fields = line.split(",")
